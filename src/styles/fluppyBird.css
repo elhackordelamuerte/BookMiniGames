@@ -2,8 +2,8 @@
   position: relative;
   width: 800px;
   height: 600px;
-  top: 165px;
-  left: 28%;
+  top: 0px;
+  left: 14%;
   border: 1px solid #000;
   overflow: hidden;
   background-image: url('../assets/back.png');
@@ -11,6 +11,10 @@
 
 .game-over {
   background-color: #ff6347;
+}
+
+.win {
+  background-color: blue;
 }
 
 .game-over-message {
@@ -25,8 +29,8 @@
 
 .bird {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   user-select: none;
 }
 
@@ -34,4 +38,24 @@
   position: absolute;
   width: 100px;
   height: 600px;
+}
+
+.score-display {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.win-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
 }

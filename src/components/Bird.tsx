@@ -1,23 +1,28 @@
-// Bird.js
 import React from "react";
-import bird from '../../assets/martin.png'
+import bird from '../assets/martin.png'
 
-const Bird = ({ birdPosition }) => {
+type BirdProps = {
+    birdPosition: {
+        x: number;
+        y: number;
+    };
+};
 
+const Bird: React.FC<BirdProps> = ({ birdPosition }) => {
     return (
         <img
             src={bird}
             alt="bird"
             className="bird"
             style={{
+                position: 'absolute',
                 left: birdPosition.x,
                 top: birdPosition.y,
-                width: 100,
-                height: 100
             }}
             draggable={true}
         />
     );
 };
+
 
 export default Bird;

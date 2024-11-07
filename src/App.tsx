@@ -4,10 +4,12 @@ import { MemoryGame } from './games/MemoryGame';
 import { FishingGame } from './games/FishingGame';
 import { BookCover } from './components/BookCover';
 import { TableOfContents } from './components/TableOfContents';
+import Fluppybird from './games/fluppyBird';
 
 const games = [
   { id: 1, title: "Memory", component: MemoryGame },
   { id: 2, title: "La Pêche", component: FishingGame },
+  { id: 3, title: "Fluppy Bird", component: Fluppybird}
 ];
 
 function App() {

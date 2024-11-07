@@ -1,18 +1,23 @@
-// Pipes.js
-
 import React from "react";
-import pipes from "../../assets/pipes.png"
 
-const Pipes = ({ pipePosition }) => {
+type PipeProps = {
+    pipePosition: {
+        x: number;
+        y: number;
+        image: string;
+    };
+};
+
+const Pipes: React.FC<PipeProps> = ({ pipePosition }) => {
     return (
         <img
-            src={pipes}
+            src={pipePosition.image}
             alt="pipe"
             className="pipe"
             style={{
+                position: 'absolute',
                 left: pipePosition.x,
                 top: pipePosition.y,
-                width: 150,
             }}
             draggable={true}
         />
