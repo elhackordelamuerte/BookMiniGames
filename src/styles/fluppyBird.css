@@ -1,0 +1,37 @@
+.App {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  top: 165px;
+  left: 28%;
+  border: 1px solid #000;
+  overflow: hidden;
+  background-image: url('../assets/back.png');
+}
+
+.game-over {
+  background-color: #ff6347;
+}
+
+.game-over-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.bird {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  user-select: none;
+}
+
+.pipe {
+  position: absolute;
+  width: 100px;
+  height: 600px;
+}
