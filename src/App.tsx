@@ -5,6 +5,7 @@ import { FishingGame } from './games/FishingGame';
 import PuzzleGame from './games/PuzzleGame';
 import { BookCover } from './components/BookCover';
 import { TableOfContents } from './components/TableOfContents';
+import Fluppybird from './games/fluppyBird';
 import {FlyGamePage} from './games/FlyGamePage'; 
 import { TestLib } from './games/FirstPage';
 
