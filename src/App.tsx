@@ -15,6 +15,7 @@ const games = [
   { id: 3, title: "Parole", component: PuzzleGame},
   { id: 4, title: "Memory", component: MemoryGame },
   { id: 5, title: "La Pêche", component: FishingGame },
+  { id: 6, title: "Fluppybird", component: Fluppybird },
 ];
 
 function App() {
