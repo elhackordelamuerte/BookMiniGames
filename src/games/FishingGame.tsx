@@ -78,10 +78,10 @@ export function FishingGame() {
     <div className="space-y-8">
       <div className="text-center">
         <h2 className="text-2xl font-serif text-blue-900 mb-2">
-          La Pêche du Roi
+          Miam le bon poisson !
         </h2>
         <p className="text-blue-600">
-          Aide le Roi Martin à attraper des poissons pour le festin royal !
+          Aide Martin Triste à attraper des poissons !
         </p>
       </div>
 
