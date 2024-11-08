@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Fish } from 'lucide-react';
 
 const FISH_TYPES = [
-  { name: 'Petit Poisson', points: 1, speed: 2, icon: '🐟' },
-  { name: 'Poisson Moyen', points: 3, speed: 3, icon: '🐠' },
-  { name: 'Gros Poisson', points: 5, speed: 4, icon: '🐡' },
+  { name: 'Petit Poisson', points: 1, speed: 0.8, icon: '🐟' },
+  { name: 'Poisson Moyen', points: 3, speed: 1, icon: '🐠' },
+  { name: 'Gros Poisson', points: 5, speed: 1.2, icon: '🐡' },
 ];
 
 export function FishingGame() {
@@ -12,14 +12,14 @@ export function FishingGame() {
   const [isReeling, setIsReeling] = useState(false);
   const [fishPosition, setFishPosition] = useState(50);
   const [currentFish, setCurrentFish] = useState(FISH_TYPES[0]);
-  const [gameTime, setGameTime] = useState(30);
+  const [gameTime, setGameTime] = useState(45);
   const [isGameActive, setIsGameActive] = useState(false);
   const animationRef = useRef<number>();
 
   const startGame = () => {
     setIsGameActive(true);
     setScore(0);
-    setGameTime(30);
+    setGameTime(45);
   };
 
   useEffect(() => {
@@ -39,8 +39,9 @@ export function FishingGame() {
 
     const animate = () => {
       setFishPosition((prev) => {
-        const newPosition = prev + Math.sin(Date.now() / 1000) * currentFish.speed;
-        return Math.max(0, Math.min(100, newPosition));
+        // Slower, smoother movement
+        const newPosition = prev + Math.sin(Date.now() / 2000) * currentFish.speed;
+        return Math.max(10, Math.min(90, newPosition));
       });
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -61,8 +62,13 @@ export function FishingGame() {
     
     setTimeout(() => {
       setIsReeling(false);
-      if (catchZone < 10) {
+      // Wider catch zone (20 instead of 10)
+      if (catchZone < 20) {
         setScore((prev) => prev + currentFish.points);
+        // Bonus points for perfect catches
+        if (catchZone < 5) {
+          setScore((prev) => prev + Math.floor(currentFish.points / 2));
+        }
         setCurrentFish(FISH_TYPES[Math.floor(Math.random() * FISH_TYPES.length)]);
       }
     }, 500);
@@ -75,7 +81,7 @@ export function FishingGame() {
           La Pêche du Roi
         </h2>
         <p className="text-blue-600">
-          Aide Martin triste à pécher du poisson !
+          Aide le Roi Martin à attraper des poissons pour le festin royal !
         </p>
       </div>
 
@@ -89,7 +95,7 @@ export function FishingGame() {
           </div>
         </div>
 
-        {!isGameActive && gameTime === 30 ? (
+        {!isGameActive && gameTime === 45 ? (
           <button
             onClick={startGame}
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700
@@ -116,6 +122,15 @@ export function FishingGame() {
             <div
               className="absolute left-1/2 top-0 h-full w-1 bg-blue-400"
               style={{ transform: 'translateX(-50%)' }}
+            />
+            
+            {/* Catch zone indicator */}
+            <div
+              className="absolute left-1/2 top-0 h-full bg-blue-300/20"
+              style={{ 
+                transform: 'translateX(-50%)',
+                width: '40%' // Shows the catch zone width
+              }}
             />
             
             <div
@@ -149,8 +164,9 @@ export function FishingGame() {
           </button>
         )}
 
-        <div className="text-sm text-blue-600 text-center">
-          Attrapez le poisson quand il passe au centre !
+        <div className="text-sm text-blue-600 text-center space-y-1">
+          <p>Attrapez le poisson quand il passe dans la zone centrale !</p>
+          <p className="text-xs">Bonus de points pour les captures parfaites !</p>
         </div>
       </div>
     </div>

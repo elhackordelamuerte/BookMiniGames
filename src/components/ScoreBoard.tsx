@@ -23,7 +23,7 @@ export function ScoreBoard({ moves, matches, time }: ScoreBoardProps) {
         <div>
           <p className="text-sm text-gray-600">Time</p>
           <p className="font-bold">{time}s</p>
-        </div>
+        </div> 
       </div>
       <div className="bg-white rounded-xl p-4 shadow-md">
         <p className="text-sm text-gray-600">Moves</p>

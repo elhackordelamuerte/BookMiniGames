@@ -20,7 +20,7 @@ interface GameActions {
   initializeGame: () => void;
 }
 
-const EMOJIS = ['🐶', '🐱', '🐼', '🐨', '🦊', '🦁', '🐯', '🐸'];
+const EMOJIS = ['🇷🇪', '🐱', '🥜', '🌼', '🐈', '🐭', '🐟', '🪶'];
 export const TOTAL_PAIRS = EMOJIS.length;
 
 export function useMemoryGame(): [GameState, GameActions] {
