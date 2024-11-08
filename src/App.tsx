@@ -5,11 +5,13 @@ import { FishingGame } from './games/FishingGame';
 import { BookCover } from './components/BookCover';
 import { TableOfContents } from './components/TableOfContents';
 import {FlyGamePage} from './games/FlyGamePage'; 
+import { TestLib } from './games/FirstPage';
 
 const games = [
   { id: 1, title: "Memory", component: MemoryGame },
   { id: 2, title: "La Pêche", component: FishingGame },
   { id: 3, title: "Envole", component: FlyGamePage },
+  { id: 4, title: "Hors de la cage", component: TestLib },
 ];
 
 function App() {
