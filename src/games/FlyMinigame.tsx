@@ -183,9 +183,7 @@ useEffect(() => {
     }
   }, [score, lives]);
 
-  const reloadDiv = () => {
-    window.location.reload();
-  };
+  
 
   return (
     <div ref={divRef} >
