@@ -8,6 +8,7 @@ import { TableOfContents } from './components/TableOfContents';
 import Fluppybird from './games/fluppyBird';
 import {FlyGamePage} from './games/FlyGamePage'; 
 import { TestLib } from './games/FirstPage';
+import WriteGame from './games/WriteGame';
 
 const games = [
   { id: 1, title: "Hors de la cage", component: TestLib },
@@ -16,6 +17,7 @@ const games = [
   { id: 4, title: "Memory", component: MemoryGame },
   { id: 5, title: "La Pêche", component: FishingGame },
   { id: 6, title: "Fluppybird", component: Fluppybird },
+  { id: 7, title: "Ecris", component: WriteGame },
 ];
 
 function App() {
