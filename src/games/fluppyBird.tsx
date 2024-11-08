@@ -47,7 +47,7 @@ const Fluppybird: React.FC = () => {
     };
 
     const checkCollision = (): void => {
-        if (score >= 2) {
+        if (score >= 10) {
             setWon(true);
             setGameStarted(false);
         }
