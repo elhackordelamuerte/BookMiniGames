@@ -98,7 +98,7 @@ const Fluppybird: React.FC = () => {
                 const randomImage = pipesImages[Math.floor(Math.random() * pipesImages.length)]
                 setPipes((prev) => [
                     ...prev,
-                    { x: 400, y: Math.floor(Math.random() * 300), passed: false, image: randomImage },
+                    { x: 400, y: Math.floor(Math.random() * 180), passed: false, image: randomImage },
                 ]);
             }
         }, 2000);
