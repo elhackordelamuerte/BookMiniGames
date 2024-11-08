@@ -9,11 +9,11 @@ import {FlyGamePage} from './games/FlyGamePage';
 import { TestLib } from './games/FirstPage';
 
 const games = [
-  { id: 1, title: "Memory", component: MemoryGame },
-  { id: 2, title: "La Pêche", component: FishingGame },
-  { id: 3, title: "Envole", component: FlyGamePage },
-  { id: 4, title: "Hors de la cage", component: TestLib },
-  { id: 4, title: "Parole", component: PuzzleGame},
+  { id: 1, title: "Hors de la cage", component: TestLib },
+  { id: 2, title: "Envole", component: FlyGamePage },
+  { id: 3, title: "Parole", component: PuzzleGame},
+  { id: 4, title: "Memory", component: MemoryGame },
+  { id: 5, title: "La Pêche", component: FishingGame },
 ];
 
 function App() {
