@@ -23,9 +23,15 @@ const Fluppybird: React.FC = () => {
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [score, setScore] = useState<number>(0);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
+    const [start, setStarted] = useState<boolean>(true);
     const [won, setWon] = useState<boolean>(false);
+    const pipesImages = [pipe2, pipe3];
+    const [counter, setCounter] = useState(60)
 
-    const pipesImages = [pipe2, pipe3]
+    const clickToStart = (): void => {
+        setGameStarted(true)
+        setStarted(false)
+    };
 
     const jump = (): void => {
         if (!gameOver && gameStarted && !won) {
@@ -44,10 +50,11 @@ const Fluppybird: React.FC = () => {
         setGameStarted(true);
         setScore(0);
         setWon(false);
+        setCounter(60)
     };
 
     const checkCollision = (): void => {
-        if (score >= 2) {
+        if (counter === 0) {
             setWon(true);
             setGameStarted(false);
         }
@@ -84,9 +91,21 @@ const Fluppybird: React.FC = () => {
         checkCollision();
     }, [birdPosition, pipes, gameOver, score]);
 
+    useEffect(() => {
+        if (counter > 0) {
+            const countDown = setInterval(() => {
+                setCounter((prevCounter) => prevCounter - 1)
+            }, 1000)
+            return () => clearInterval(countDown)
+        }
+    }, [counter]);
+
 
     useEffect(() => {
-        if (won)
+        if (won) {
+            return;
+        }
+        if (start)
             return;
         const gravity = setInterval(() => {
             setBirdPosition((prev) => ({ ...prev, y: prev.y + 5 }));
@@ -107,7 +126,6 @@ const Fluppybird: React.FC = () => {
             if (!gameOver && gameStarted && !won) {
                 setPipes((prev) =>
                     prev.map((pipe) => {
-                        // Check if the bird has passed the pipe
                         if (!pipe.passed && pipe.x < birdPosition.x) {
                             pipe.passed = true;
                             setScore((prevScore) => prevScore + 1);
@@ -126,36 +144,49 @@ const Fluppybird: React.FC = () => {
     }, [gameOver, gameStarted, won]);
 
     return (
-        <div className={`App ${gameOver ? 'game-over' : ''} ${won ? 'win' : ''}`} onClick={jump}>
-            <Bird birdPosition={birdPosition} />
-            {pipes.map((pipe, index) => (
-                <Pipes key={index} pipePosition={pipe} />
-            ))}
-            <div className="score-display">
-                Score: {score}
+        <div className='text-start' onClick={clickToStart}>
+            {start && <center>
+                            <div className='content-text-start'>
+                                <h2 className='text-1'>
+                                    Maintenant que Martin Triste sait parler, tout le monde veut s'approprier Martin Triste.
+                                    Aidez-le à éviter les mains des différents personnes qui
+                                    veulent Martin Triste. Cliquez sur l'écran pour pouvoir faire voler Martin Triste.
+                                </h2>
+                                <p className='text-2'>Cliquez pour démarrer le jeu</p>
+                            </div>
+                        </center>}
+            <div className={`App ${gameOver ? 'game-over' : ''} ${won ? 'win' : ''}`} onClick={jump}>
+                <Bird birdPosition={birdPosition} />
+                {pipes.map((pipe, index) => (
+                    <Pipes key={index} pipePosition={pipe} />
+                ))}
+                <div className="score-display">
+                    Score: {score}
+                </div>
+                <p className='counter'>{counter}</p>
+                {gameOver && (
+                    <center>
+                        <div className="game-over-message">
+                            Oh non ! Martin Triste s'est fait attrapé !
+                            <br />
+                            Votre score: {score}
+                            <br />
+                            <p style={{ backgroundColor: 'red', padding: "2px 6px", borderRadius: '5px' }}>Cliquer n'importe où pour recommencer</p>
+                        </div>
+                    </center>
+                )}
+                {won && (
+                    <center>
+                        <div className="win-message">
+                            Bravo! Martin Triste a pu s'échapper !
+                            <br />
+                            Score Final: {score}
+                            <br />
+                            <p style={{ backgroundColor: 'green', padding: "2px 6px", borderRadius: '5px' }}>Cliquer n'importe où pour rejouer</p>
+                        </div>
+                    </center>
+                )}
             </div>
-            {gameOver && (
-                <center>
-                    <div className="game-over-message">
-                        Game Over!
-                        <br />
-                        Your Score: {score}
-                        <br />
-                        <p style={{ backgroundColor: 'blue', padding: "2px 6px", borderRadius: '5px' }}>Click anywhere to Restart</p>
-                    </div>
-                </center>
-            )}
-            {won && (
-                <center>
-                    <div className="win-message">
-                        Congratulations! You Win!
-                        <br />
-                        Final Score: {score}
-                        <br />
-                        <p style={{ backgroundColor: 'green', padding: "2px 6px", borderRadius: '5px' }}>Click anywhere to Play Again</p>
-                    </div>
-                </center>
-            )}
         </div>
     );
 };
