@@ -36,6 +36,8 @@ import jail from '../assets/jail.png';
     };
 
     return (
+        <div>
+            <h1 style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center', fontSize: '24px'}}>clique sur le cage pour liberer Martin</h1>
         <div
             ref={dragConstraintsRef}
             style={{ width: "100%", height: "65vh", position: "relative", background: `url(${back})` }}
@@ -58,10 +60,11 @@ import jail from '../assets/jail.png';
                     src={jail}
                     alt="un"
                     animate={controls}
-                    style={{  width:"100vh",  position: "absolute"}}
+                    style={{  width:"100%", height: "100%",  position: "absolute"}}
                     onClick={handleClick}
                      />
             }
+            </div>
             </div>
         </div>
     );
