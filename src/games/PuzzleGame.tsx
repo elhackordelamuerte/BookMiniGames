@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import puzzleImg from '../assets/page5.jpg';
+import page5 from '../assets/page5.jpg';
 
 const PuzzleGame = ({}) => {
   const [pieces, setPieces] = useState([]);
@@ -57,23 +58,27 @@ const PuzzleGame = ({}) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <div className="grid grid-cols-3 gap-1 w-64 h-64">
-        {shuffledPieces.map((piece, index) => (
-          <div
-            key={index}
-            className={`piece ${piece === 8 ? 'empty' : ''}`}
-            draggable={piece !== 8}
-            onDragStart={handleDragStart(index)}
-            onDrop={handleDrop(index)}
-            onDragOver={handleDragOver}
-            style={{
-              backgroundImage: `url(${puzzleImg})`,
-              backgroundPosition: `${(piece % 3) * -100}% ${(Math.floor(piece / 3)) * -100}%`,
-              backgroundSize: '300% 300%',
-            }}
-          />
-        ))}
-      </div>
+      {isComplete ? (
+        <img src={page5} alt="Complete Puzzle" className="w-64 h-64" />
+      ) : (
+        <div className="grid grid-cols-3 gap-1 w-64 h-64">
+          {shuffledPieces.map((piece, index) => (
+            <div
+              key={index}
+              className={`piece ${piece === 8 ? 'empty' : ''}`}
+              draggable={piece !== 8}
+              onDragStart={handleDragStart(index)}
+              onDrop={handleDrop(index)}
+              onDragOver={handleDragOver}
+              style={{
+                backgroundImage: `url(${puzzleImg})`,
+                backgroundPosition: `${(piece % 3) * -100}% ${(Math.floor(piece / 3)) * -100}%`,
+                backgroundSize: '300% 300%',
+              }}
+            />
+          ))}
+        </div>
+      )}
       {isComplete && <div className="mt-4 text-green-500">Puzzle Complete!</div>}
     </div>
   );
