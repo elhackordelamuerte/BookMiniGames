@@ -190,6 +190,7 @@ useEffect(() => {
       <img src={back} style={{
         position: 'absolute',
         width: '100%',
+        height: '100%',
         right: 0,
       }}/>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>

@@ -9,10 +9,12 @@ import Fluppybird from './games/fluppyBird';
 import {FlyGamePage} from './games/FlyGamePage'; 
 import { TestLib } from './games/FirstPage';
 import WriteGame from './games/WriteGame';
+import FindCat from './games/FindCat';
 
 const games = [
   { id: 1, title: "Hors de la cage", component: TestLib },
   { id: 2, title: "Envole", component: FlyGamePage },
+  { id: 3, title: "Trouve le chat", component: FindCat },
   { id: 3, title: "Parole", component: PuzzleGame},
   { id: 4, title: "Memory", component: MemoryGame },
   { id: 5, title: "La Pêche", component: FishingGame },
