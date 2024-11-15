@@ -65,7 +65,7 @@ const WriteGame: React.FC = () => {
     return (
         <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center'}}>
             <h1 style={{ fontSize: '24px', marginBottom: '20px' }}>Réécrit les mots que Martin a entendu</h1>
-            <p>Time: {time} seconds</p>
+            <p>Temps: {time} secondes</p>
             { !gameOver &&
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>{listword[score].word}</h2>
@@ -74,7 +74,7 @@ const WriteGame: React.FC = () => {
                 
                 <input type="text" value={inputValue} style={{ padding: '10px', marginBottom: '10px', border: '1px solid #ccc', borderRadius: '4px', width: '200px' }} />
 
-                <button onClick={handleSubmit} style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Submit</button>
+                <button onClick={handleSubmit} style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Répondre</button>
             
             </div>
             }
