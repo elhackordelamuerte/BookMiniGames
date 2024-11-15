@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import puzzleImg from '../assets/page5.jpg';
-import page5 from '../assets/page5.jpg';
+import React, { useState, useEffect, useRef } from 'react';
+import puzzleImg from '../assets/page5_basic.jpg';
+import page5 from '../assets/page5_basic.jpg';
 
 const PuzzleGame = ({}) => {
   const [pieces, setPieces] = useState([]);
   const [shuffledPieces, setShuffledPieces] = useState([]);
   const [emptyIndex, setEmptyIndex] = useState(8);
   const [isComplete, setIsComplete] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     const initialPieces = Array.from({ length: 9 }, (_, index) => index);
     setPieces(initialPieces);
     setShuffledPieces(shuffleArray(initialPieces));
+    intervalRef.current = setInterval(() => {
+      setTimer((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(intervalRef.current);
   }, []);
+
+  useEffect(() => {
+    if (isComplete) {
+      clearInterval(intervalRef.current);
+    }
+  }, [isComplete]);
 
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
@@ -58,6 +70,9 @@ const PuzzleGame = ({}) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
+        <div className="mb-4" style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9', fontSize: '16px', color: '#333' }}>
+          Temps: {timer} secondes
+        </div>
       {isComplete ? (
         <img src={page5} alt="Complete Puzzle" className="w-64 h-64" />
       ) : (
@@ -79,8 +94,11 @@ const PuzzleGame = ({}) => {
           ))}
         </div>
       )}
-      {isComplete && <div className="mt-4 text-green-500">Puzzle Complete!</div>}
-    </div>
+      {isComplete && (
+        <div className="mt-4 p-4 border border-green-500 rounded-lg shadow-lg text-green-500 bg-green-100">
+          Tu as completé le puzzle ! Tu as désormais accés à la suite de l'histoire.
+        </div>
+      )}    </div>
   );
 };
 
